@@ -13,10 +13,8 @@
 **Chores:**
 
 - Linter
-- Dependencies
 - Tidy up CSS styles
 
 **Architecture:**
 
-- Create docker container
 - Try to make accessible via Internet

@@ -37,4 +37,4 @@ def render_random_artists():
     return render_template('index.html', username=username, random_artists=random_artists)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
