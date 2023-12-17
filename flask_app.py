@@ -2,9 +2,10 @@
 
 from flask import Flask, render_template, request, session
 from last_fm_api import get_random_artists
+import secrets
 
 app = Flask(__name__, static_folder='static')
-app.secret_key = 'bad'
+app.secret_key = secrets.token_hex(nbytes=16)
 
 @app.route('/')
 def index():
