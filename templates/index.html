@@ -2,113 +2,9 @@
 <html>
 <head>
     <title>Last.fm Game</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&display=swap">
-    <style>
-
-        body {
-            font-family: 'Golos Text', sans-serif;
-            background-color: rgba(208, 207, 179, 0.99)
-        }
-
-        h1 {
-            position: relative;
-            display: inline-block;
-        }
-
-        h1::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px; /* Adjust the height of the line as needed */
-            background-color: #000; /* Adjust the color of the line */
-        }
-
-        .artist-block {
-            border: 1px solid #ccc;
-            margin: 10px;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: rgba(228, 229, 229, 0.99); /* Transparent white background */
-            list-style: none; /* Remove list bullets */
-        }
-
-        .playcount {
-            font-weight: bold;
-            color: #0066cc; /* Blue color */
-        }
-
-        .other {
-            font-weight: bold;
-            color: #1400cc; /* Blue color */
-        }
-
-        .youtube-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #ff0000; /* YouTube red color */
-            color: #ffffff; /* White text color */
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .lastfm-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #d51007; /* Last.fm red color */
-            color: #ffffff; /* White text color */
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .user_button {
-            background-color: #e1ecf4;
-            border-radius: 5px; /* Increased border-radius for a rounded appearance */
-            border: 1px solid #7aa7c7;
-            box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
-            box-sizing: border-box;
-            color: #39739d;
-            cursor: pointer;
-            display: inline-block;
-            font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
-            font-size: 16px; /* Increased font size */
-            font-weight: 400;
-            line-height: 1.6; /* Increased line-height for better vertical spacing */
-            margin: 0;
-            outline: none;
-            padding: 12px 1.6em; /* Increased padding for a larger button */
-            position: relative;
-            text-align: center;
-            text-decoration: none;
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
-            vertical-align: baseline;
-            white-space: nowrap;
-        }
-
-        .about-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #4CAF50; /* Green background color */
-            color: white; /* White text color */
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-
-    </style>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <h1>LAST.FM GAME</h1>
@@ -134,8 +30,14 @@
                 <li class="artist-block">
                     <strong>Name:</strong> {{ artist.name }}<br>
                     <strong>Playcount:</strong> <span class="playcount">{{ artist.playcount }}</span><br>
-                    <a class="lastfm-button" href="{{ artist.url }}" target="_blank">Last.fm</a>
-                    <a class="youtube-button" href="{{ artist.youtube_url }}" target="_blank">YouTube</a>
+
+                    <a class="logo-button" href="{{ artist.url }}" target="_blank">
+                        <img class="lastfm-logo" src="{{ url_for('static', filename='img/lastfm.png') }}" alt="Last.fm Logo">
+                    </a>
+                
+                    <a class="logo-button" href="{{ artist.youtube_url }}" target="_blank">
+                        <img class="youtube-logo" src="{{ url_for('static', filename='img/youtube.png') }}" alt="YouTube Logo">
+                    </a>
 
                 </li>
             {% endfor %}

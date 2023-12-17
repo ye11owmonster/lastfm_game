@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, session
 from last_fm_api import get_random_artists
 from flask_session import Session
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 # # Configure session to use the filesystem
 # app.config['SESSION_TYPE'] = 'filesystem'

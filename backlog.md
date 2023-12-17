@@ -12,7 +12,6 @@
 
 - Linter
 - Dependencies
-- CSS styles to separate file
 - Tidy up CSS styles
 
 **Architecture:**
