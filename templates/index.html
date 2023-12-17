@@ -9,16 +9,20 @@
 <body>
     <h1>LAST.FM GAME</h1>
 
-    <form method="post" action="{{ url_for('render_random_artists') }}">
-        <label for="username">Enter your Last.fm username:</label>
-        <input type="text" name="username" optional>
-        <button type="submit">Get Random Artists</button>
-    </form>
-
-    <form method="post" action="{{ url_for('render_random_artists') }}">
-        <button class ="user_button" type="submit" name="username" value="Vettoreja">Vettoreja</button>
-        <button class ="user_button" type="submit" name="username" value="ChaoticDots">ChaoticDots</button>
-    </form>
+    {% if username %}
+        <form method="post" action="{{ url_for('render_random_artists') }}">
+            <button class ="user_button" type="submit" name="username" value={{username}}>Get more random artists for {{username}}</button>
+        </form>
+        <form method="post" action="{{ url_for('clear_session') }}">
+            <button class ="goback-button" type="submit" name="clear_session">Clear session</button>
+        </form>
+    {% else %}
+        <form method="post" action="{{ url_for('render_random_artists') }}">
+            <label for="username">Enter your Last.fm username:</label>
+            <input type="text" name="username" optional>
+            <button type="submit">Get Random Artists</button>
+        </form>
+    {% endif %}
 
     {% if random_artists %}
         

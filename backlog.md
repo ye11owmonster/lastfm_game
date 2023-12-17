@@ -2,12 +2,13 @@
 
 **Features:**
 
-- Add persistent session info
 - Add persistent history of generations on separate page
 - Redesign the main page
-- Add info to artist-block
-  - artist info
-  - small picture
+
+**Known issues:**
+
+- sometimes returns less than 5 artists because they are at the end of page
+- add handling invalid user names
 
 **Chores:**
 

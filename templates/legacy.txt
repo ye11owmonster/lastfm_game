@@ -1,0 +1,6 @@
+
+
+    <form method="post" action="{{ url_for('render_random_artists') }}">
+        <button class ="user_button" type="submit" name="username" value="Vettoreja">Vettoreja</button>
+        <button class ="user_button" type="submit" name="username" value="ChaoticDots">ChaoticDots</button>
+    </form>
