@@ -7,12 +7,10 @@
 - Redesign the main page
 - Add info to artist-block
   - artist info
-  - tags
   - small picture
 
 **Chores:**
 
-- Linter
 - Tidy up CSS styles
 
 **Architecture:**

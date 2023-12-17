@@ -27,6 +27,16 @@ h1::after {
     border-radius: 5px;
     background-color: rgba(228, 229, 229, 0.99); /* Transparent white background */
     list-style: none; /* Remove list bullets */
+    position: relative;
+}
+
+.upper-right-text {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #ff0000; /* Background color of the text */
+    color: #ffffff; /* Text color */
+    padding: 5px; /* Adjust as needed for padding */
 }
 
 .playcount {

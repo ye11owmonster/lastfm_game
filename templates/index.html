@@ -27,7 +27,10 @@
         <p><strong>Positions:</strong> <span class="other">{{ random_artists.positions }}</span></p>
         <ul>
             {% for artist in random_artists.artists %}
-                <li class="artist-block">
+                <div class="artist-block">
+
+                    <div class="upper-right-text">{{ artist.tags }}</div>
+
                     <strong>Name:</strong> {{ artist.name }}<br>
                     <strong>Playcount:</strong> <span class="playcount">{{ artist.playcount }}</span><br>
 
@@ -39,7 +42,7 @@
                         <img class="youtube-logo" src="{{ url_for('static', filename='img/youtube.png') }}" alt="YouTube Logo">
                     </a>
 
-                </li>
+                </div>
             {% endfor %}
         </ul>
     {% endif %}
