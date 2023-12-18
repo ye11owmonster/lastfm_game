@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Last.fm Game</title>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>ERROR!</h1>
+    <p>Some error occured. Details:</p>
+    <p>{{random_artists.text}}</p>
+    <a href="{{ url_for('index') }}" class="goback-button">Go back</a>
+</body>
+</html>

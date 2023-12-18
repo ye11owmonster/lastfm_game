@@ -30,8 +30,11 @@ def render_random_artists():
     # Call your last.fm API code here
     # Replace the following line with the actual function call from your code
     random_artists = get_random_artists(username)
-    
-    return render_template('index.html', username=username, random_artists=random_artists)
+    if 'error' in random_artists.keys():
+        session.clear()
+        return render_template('error.html', username=username, random_artists=random_artists)
+    else:
+        return render_template('index.html', username=username, random_artists=random_artists)
 
 @app.route('/clear', methods=['POST'])
 def clear_session():
