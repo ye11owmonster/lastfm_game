@@ -70,6 +70,12 @@ def get_random_artists(user_name: str, n_artists: int = 5) -> dict:
     
     lucky_artists = get_lucky_page['artists']['artist'][lower_bound:upper_bound]
 
+    if len(lucky_artists) < 5:
+        
+        get_next_page = requests.get(f"http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key={api_key}&user={user_name}&page={lucky_page+1}&format=json").json()
+        next_lucky_artists = get_next_page['artists']['artist'][:n_artists-len(lucky_artists)]
+        lucky_artists += next_lucky_artists
+
     result['random_page'] = lucky_page
     result['positions'] = f"{lucky_page * 50 + lower_bound} - {lucky_page * 50 + upper_bound}"
     result['artists'] = []
@@ -89,5 +95,3 @@ def get_random_artists(user_name: str, n_artists: int = 5) -> dict:
         result['artists'].append(artist_info)
 
     return result
-
-get_random_artists('ChaoticDots')
