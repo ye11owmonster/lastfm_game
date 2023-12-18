@@ -60,13 +60,20 @@ def get_random_artists(user_name: str, n_artists: int = 5) -> dict:
     if get_stats.status_code == 200:
         get_stats = get_stats.json()
     else:
-        return {'error': 1, 'text': f"User with name '{user_name}' was not found on Last.fm! Please check correctness."}
+        return {'error': 1, 'text': f"Error:{get_stats.text}"}
     
     max_page = int(get_stats['artists']['@attr']['totalPages'])
 
+    if max_page <= 1:
+        return {'error': 1, 'text': f"User '{user_name}' has only 1 or 0 pages! Game was stopped."}
+
     lucky_page = random.randint(1, max_page)
 
-    get_lucky_page = requests.get(f"http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key={api_key}&user={user_name}&page={lucky_page}&format=json").json()
+    get_lucky_page = requests.get(f"http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key={api_key}&user={user_name}&page={lucky_page}&format=json")
+    if get_lucky_page.status_code == 200:
+        get_lucky_page = get_lucky_page.json()
+    else:
+        return {'error': 1, 'text': f"Error:{get_lucky_page.text}"}
 
     max_artist_on_page = len(get_lucky_page['artists']['artist'])
 
@@ -78,6 +85,11 @@ def get_random_artists(user_name: str, n_artists: int = 5) -> dict:
     if len(lucky_artists) < 5:
 
         get_next_page = requests.get(f"http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key={api_key}&user={user_name}&page={lucky_page+1}&format=json").json()
+        if get_lucky_page.status_code == 200:
+            get_lucky_page = get_lucky_page.json()
+        else:
+            return {'error': 1, 'text': f"Error:{get_next_page.text}"}
+        
         next_lucky_artists = get_next_page['artists']['artist'][:n_artists-len(lucky_artists)]
         lucky_artists += next_lucky_artists
 
@@ -100,5 +112,3 @@ def get_random_artists(user_name: str, n_artists: int = 5) -> dict:
         result['artists'].append(artist_info)
 
     return result
-
-get_random_artists('Vettoreja')
