@@ -84,7 +84,7 @@ def get_random_artists(user_name: str, n_artists: int = 5) -> dict:
 
     if len(lucky_artists) < 5:
 
-        get_next_page = requests.get(f"http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key={api_key}&user={user_name}&page={lucky_page+1}&format=json").json()
+        get_next_page = requests.get(f"http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key={api_key}&user={user_name}&page={lucky_page+1}&format=json")
         if get_lucky_page.status_code == 200:
             get_lucky_page = get_lucky_page.json()
         else:

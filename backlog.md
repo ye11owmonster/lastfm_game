@@ -4,11 +4,11 @@
 
 - Add persistent history of generations on separate page
 - Redesign the main page
+- BIG: add Spotify random artist search
 
 **Known issues:**
 
-- sometimes returns less than 5 artists because they are at the end of page
-- add handling invalid user names
+- 
 
 **Chores:**
 
@@ -17,3 +17,4 @@
 **Architecture:**
 
 - Try to make accessible via Internet
+- Add logging
