@@ -19,6 +19,11 @@ def about():
 
     return render_template('about.html')
 
+@app.route('/how_to_play')
+def how_to_play():
+
+    return render_template('how_to_play.html')
+
 @app.route('/', methods=['POST'])
 def render_random_artists():
 
@@ -34,7 +39,7 @@ def render_random_artists():
         session.clear()
         return render_template('error.html', username=username, random_artists=random_artists)
     else:
-        return render_template('index.html', username=username, random_artists=random_artists)
+        return render_template('generation.html', username=username, random_artists=random_artists)
 
 @app.route('/clear', methods=['POST'])
 def clear_session():

@@ -16,29 +16,30 @@
             src="{{ url_for('static', filename='img/lastfm_logo.svg') }}" alt="Last.fm Logo"></div>
 
     <div class="main-content-container">
-
         <div class="button-main-menu-container">
             <button class="button-main-menu" onclick="window.location.href='{{ url_for('index') }}'">HOME</button>
             <button class="button-main-menu" onclick="window.location.href='{{ url_for('about') }}'">ABOUT</button>
-            <button class="button-main-menu" onclick="window.location.href='{{ url_for('how_to_play') }}'">HOW TO PLAY</button>
+            <button class="button-main-menu" onclick="window.location.href='{{ url_for('how_to_play') }}'">HOW TO
+                PLAY</button>
         </div>
 
         <div class="empty-space"></div>
-
         <div class="logo-container">
-            <div id="additive-word-lastfm"><br></div>
+            <div id="additive-word-lastfm">HOW TO PLAY</div>
             <div id="logo-lastfm">LAST.FM.</div>
             <div id="logo-game">game</div>
         </div>
-
-        <form class="enter-username" method="post" action="{{ url_for('render_random_artists') }}">
-            <label for="username">Enter your Last.fm username:</label>
-            <input type="text" name="username" class="username-input" optional>
-            <div class="empty-space" style="height: 100px;"></div>
-            <button class="orange-button" type="submit">Get random artists</button>
-
+        <ol class="block-list">
+                <li>You need to have a Last.fm account with at least 100+ scrobbled artists. Otherwise the game won't be
+                    interesting.</li>
+                <li>On the <a href="{{ url_for('index') }}">Home</a> page enter your Last.fm username and click on "Get
+                    random artists" button.</li>
+                <li>List of 5 artists will be generated for you, with links to YouTube and Last.fm. Pick any (or
+                    several!) and start exploring.<br>Watching music videos that you've never seen before is highly
+                    recommended!</li>
+                <li>Try entering other usernames! Last.fm scrobbling history is open for everyone.</li>
+        </ol>
     </div>
-
 </body>
 
 </html>
