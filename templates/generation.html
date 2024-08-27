@@ -41,6 +41,9 @@
             <form method="post" action="{{ url_for('clear_session') }}">
                 <button class="blue-button" type="submit" name="clear_session">Clear session</button>
             </form>
+            <form method="post" action="{{ url_for('get_history') }}">
+                <button class="blue-button" type="submit" name="get_history">Get generation history</button>
+            </form>
         </div>
         </div>
         </p>

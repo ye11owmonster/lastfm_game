@@ -3,6 +3,7 @@
 from flask import Flask, render_template, request, session
 from last_fm_api import get_random_artists
 import secrets
+import sqlite3
 
 app = Flask(__name__, static_folder='static')
 app.secret_key = secrets.token_hex(nbytes=16)
@@ -46,5 +47,31 @@ def clear_session():
     session.clear()
     return render_template('index.html')
 
+def get_db_connection():
+    conn = sqlite3.connect('static/databases/db_lastfm_persistent.db')
+    conn.row_factory = sqlite3.Row  # This allows us to use row['column_name']
+    return conn
+
+@app.route('/history', methods=['GET', 'POST'])
+def get_history():
+
+    username = session.get('username', '')
+    # Get the page number from the query string (default is 1)
+    page = request.args.get('page', 1, type=int)
+    per_page = 10  # Number of entries per page
+
+    conn = get_db_connection()
+    # Calculate the offset for the SQL query
+    offset = (page - 1) * per_page
+    # Fetch data with limit and offset for pagination
+    rows = conn.execute("SELECT strftime('%Y-%m-%d', timestamp) as date, artist, tags FROM generation_history WHERE username=? ORDER BY date desc LIMIT ? OFFSET ?", (username, per_page, offset)).fetchall()
+    total_rows = conn.execute('SELECT COUNT(*) FROM generation_history').fetchone()[0]
+    conn.close()
+
+    # Calculate total number of pages
+    total_pages = (total_rows + per_page - 1) // per_page
+
+    return render_template('history.html', rows=rows, page=page, total_pages=total_pages, username=username)
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000)

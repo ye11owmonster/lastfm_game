@@ -2,6 +2,9 @@ import requests
 import random
 import os
 from dotenv import load_dotenv
+from datetime import datetime
+import uuid
+import sqlite_manager as sqm
 
 load_dotenv()
 
@@ -114,5 +117,10 @@ def get_random_artists(user_name: str, n_artists: int = 5) -> dict:
         }
 
         result['artists'].append(artist_info)
+        
+        try:
+            sqm.add_to_hist_db(id=str(uuid.uuid4()), username=user_name, timestamp=datetime.now(), artist=artist_info['name'], tags=artist_info['tags'])
+        except:
+            return {'error': 1, 'text': f"Error:{get_stats.text}"}
 
     return result

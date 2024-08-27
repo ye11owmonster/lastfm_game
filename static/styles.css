@@ -309,3 +309,32 @@ ul,ol {
     padding: 0;
     border: 0;
 }
+
+table {
+    width: 80%;
+    margin: auto;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+.pagination a {
+    margin: 0 5px;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #dddddd;
+    color: #000;
+}
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+}
