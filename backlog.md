@@ -2,17 +2,15 @@
 
 **Features:**
 
-- Add persistent history of generations on separate page
-    - style
-- BIG: add Spotify random artist search
+-
 
 **Known issues:**
 
-- 
+-
 
 **Chores:**
 
-- 
+-
 
 **Architecture:**
 

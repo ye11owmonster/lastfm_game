@@ -58,20 +58,24 @@ def get_history():
     username = session.get('username', '')
     # Get the page number from the query string (default is 1)
     page = request.args.get('page', 1, type=int)
-    per_page = 10  # Number of entries per page
+    per_page = 5  # Number of entries per page
+    total_pages_to_display = 10
 
     conn = get_db_connection()
     # Calculate the offset for the SQL query
     offset = (page - 1) * per_page
     # Fetch data with limit and offset for pagination
     rows = conn.execute("SELECT strftime('%Y-%m-%d', timestamp) as date, artist, tags FROM generation_history WHERE username=? ORDER BY date desc LIMIT ? OFFSET ?", (username, per_page, offset)).fetchall()
-    total_rows = conn.execute('SELECT COUNT(*) FROM generation_history').fetchone()[0]
+    total_rows = conn.execute('SELECT COUNT(*) FROM generation_history WHERE username=?', (username, )).fetchone()[0]
     conn.close()
 
     # Calculate total number of pages
     total_pages = (total_rows + per_page - 1) // per_page
 
-    return render_template('history.html', rows=rows, page=page, total_pages=total_pages, username=username)
+    start_page = max(1, page - total_pages_to_display // 2)
+    end_page = min(start_page + total_pages_to_display - 1, total_pages)
+
+    return render_template('history.html', rows=rows, page=page, total_pages=total_pages, username=username, start_page=start_page, end_page=end_page)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

@@ -12,6 +12,8 @@ api_key = os.environ.get("API_KEY")
 shared_secret = os.environ.get("SHARED_SECRET")
 app_name = os.environ.get("APP_NAME")
 
+LASTFM_BASE_API_URI = "{LASTFM_BASE_API_URI}"
+
 def get_artist_info(mbid: str, name: str = '') -> dict:
 
     """
@@ -27,13 +29,13 @@ def get_artist_info(mbid: str, name: str = '') -> dict:
     """
 
     if mbid != '':
-        info = requests.get(f"http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&mbid={mbid}&api_key={api_key}&format=json").json()
+        info = requests.get(f"{LASTFM_BASE_API_URI}?method=artist.getinfo&mbid={mbid}&api_key={api_key}&format=json").json()
     else:
-        info = requests.get(f"http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist={name}&api_key={api_key}&format=json").json()
+        info = requests.get(f"{LASTFM_BASE_API_URI}?method=artist.getinfo&artist={name}&api_key={api_key}&format=json").json()
     
     # try one more time by artist name
     if 'error' in info.keys():
-        info = requests.get(f"http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist={name}&api_key={api_key}&format=json").json()
+        info = requests.get(f"{LASTFM_BASE_API_URI}?method=artist.getinfo&artist={name}&api_key={api_key}&format=json").json()
 
     if 'error' in info.keys():
         info = {}
@@ -63,7 +65,7 @@ def get_random_artists(user_name: str, n_artists: int = 5) -> dict:
     
     result = {}
 
-    get_stats = requests.get(f"http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key={api_key}&user={user_name}&format=json")
+    get_stats = requests.get(f"{LASTFM_BASE_API_URI}?method=library.getartists&api_key={api_key}&user={user_name}&format=json")
     if get_stats.status_code == 200:
         get_stats = get_stats.json()
     else:
@@ -76,7 +78,7 @@ def get_random_artists(user_name: str, n_artists: int = 5) -> dict:
 
     lucky_page = random.randint(1, max_page)
 
-    get_lucky_page = requests.get(f"http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key={api_key}&user={user_name}&page={lucky_page}&format=json")
+    get_lucky_page = requests.get(f"{LASTFM_BASE_API_URI}?method=library.getartists&api_key={api_key}&user={user_name}&page={lucky_page}&format=json")
     if get_lucky_page.status_code == 200:
         get_lucky_page = get_lucky_page.json()
     else:
@@ -91,7 +93,7 @@ def get_random_artists(user_name: str, n_artists: int = 5) -> dict:
 
     if len(lucky_artists) < 5:
 
-        get_next_page = requests.get(f"http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key={api_key}&user={user_name}&page={lucky_page+1}&format=json")
+        get_next_page = requests.get(f"{LASTFM_BASE_API_URI}?method=library.getartists&api_key={api_key}&user={user_name}&page={lucky_page+1}&format=json")
         if get_next_page.status_code == 200:
             get_next_page = get_next_page.json()
         else:
@@ -120,7 +122,7 @@ def get_random_artists(user_name: str, n_artists: int = 5) -> dict:
         
         try:
             sqm.add_to_hist_db(id=str(uuid.uuid4()), username=user_name, timestamp=datetime.now(), artist=artist_info['name'], tags=artist_info['tags'])
-        except:
-            return {'error': 1, 'text': f"Error:{get_stats.text}"}
+        except Exception as e:
+            return {'error': 1, 'text': f"Error:{e}"}
 
     return result

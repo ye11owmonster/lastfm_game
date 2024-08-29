@@ -245,29 +245,27 @@ ol {
 
 .block-list li {
     position: relative;
-    max-width: 50%;
-    height: 100px;
-    padding-left: 2%;
-    padding-top: 2%;
-    border: none;
-    border-radius: 50px;
-    background-color: #9DBEB7;
+    width: 80%;
+    text-align: center;
+    border-radius: 3rem;
+    background: #9DBEB7;
     opacity: 0.9;
     list-style: none;
     mix-blend-mode: darken;
-    line-height: 120%;
     margin-bottom: 10px;
     counter-increment: list-counter;
+    padding: 1.1rem 1.5rem 1.1rem 1.5rem;
 }
 
 .block-list li::before {
     content: counter(list-counter);
     position: absolute;
-    bottom: 15px;
-    right: 15px;
-    font-size: 25px;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
     font-style: bold;
-    color: #445653;
+    font-size: 30px;
+    color: #E73213;
     padding: 5px 5px;
 }
 
@@ -300,7 +298,7 @@ ol {
 
 .generation-mgmt {
     display: flex; /* Enables flexbox layout */
-    align-items: top; /* Vertically centers items in the container */
+    align-items: center; /* Vertically centers items in the container */
     gap: 10px; /* Adds space between the items */
 }
 
@@ -310,31 +308,53 @@ ul,ol {
     border: 0;
 }
 
+.table-container {
+    margin-top: 30px;
+}
+
 table {
     width: 80%;
-    margin: auto;
+    margin: 0px;
     border-collapse: collapse;
+    background-color: #9DBEB7;
+    opacity: 0.9;
+    border-radius: 50px;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
 }
 th, td {
-    border: 1px solid #dddddd;
+    border: none;
     padding: 8px;
-    text-align: left;
+    text-align: center;
 }
 th {
-    background-color: #f2f2f2;
+    background-color: #E73213;
+    opacity: 0.7;
+    color: white;
 }
+
 .pagination {
     text-align: center;
     margin-top: 20px;
+    width: 80%;
+
 }
+
+.pagination a:hover{
+    background-color: #81a39e
+}
+
 .pagination a {
     margin: 0 5px;
     text-decoration: none;
     padding: 5px 10px;
-    border: 1px solid #dddddd;
-    color: #000;
+    border: none;
+    color: black;
+    border-radius: 50px;
 }
 .pagination a.active {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #9DBEB7;
+    color: black;
+    border-radius: 50px; 
 }

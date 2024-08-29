@@ -23,8 +23,6 @@
                 PLAY</button>
         </div>
 
-        <div class="empty-space"></div>
-
         <div class="logo-container">
             <div id="additive-word-lastfm">GENERATION HISTORY</div>
             <div id="logo-lastfm">LAST.FM.</div>
@@ -35,40 +33,51 @@
             History for <span class="c-text" style="margin-left: -4px;">{{ username }}</span>
             <div class="generation-mgmt-button-container">
                 <form method="post" action="{{ url_for('render_random_artists') }}">
-                    <button class="blue-button" type="submit" name="username" value={{username}}>Back to generation</button>
+                    <button class="blue-button" type="submit" name="username" value={{username}}>Back to
+                        generation</button>
                 </form>
             </div>
         </div>
 
         <div>
 
-            <table>
-                <tr>
-                    <th>Date</th>
-                    <th>Generated Artist</th>
-                    <th>Tags</th>
-                </tr>
-                {% for row in rows %}
-                <tr>
-                    <td>{{ row['date'] }}</td>
+            <div class="table-container">
+
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Generated Artist</th>
+                        <th>Tags</th>
+                    </tr>
+                    {% for row in rows %}
+                    <tr>
+                        <td>{{ row['date'] }}</td>
                     <td>{{ row['artist'] }}</td>
                     <td>{{ row['tags'] }}</td>
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
 
-        <div class="pagination">
-            {% if page > 1 %}
-            <a href="{{ url_for('get_history', page=page-1) }}">Previous</a>
-            {% endif %}
-
-            {% for p in range(1, total_pages + 1) %}
-            <a href="{{ url_for('get_history', page=p) }}" class="{{ 'active' if p == page else '' }}">{{ p }}</a>
-            {% endfor %}
+            <div class="pagination">
 
             {% if page < total_pages %} <a href="{{ url_for('get_history', page=page+1) }}">Next</a>
                 {% endif %}
+            
+                {% if page > 1 %}
+                <a href="{{ url_for('get_history', page=1) }}">First</a>
+                <a href="{{ url_for('get_history', page=page-1) }}">Previous</a>
+            {% endif %}
+    
+            {% for p in range(start_page, end_page + 1) %}
+                <a href="{{ url_for('get_history', page=p) }}" class="{{ 'active' if p == page else '' }}">{{ p }}</a>
+            {% endfor %}
+    
+            {% if page < total_pages %}
+                <a href="{{ url_for('get_history', page=page+1) }}">Next</a>
+                <a href="{{ url_for('get_history', page=total_pages) }}">Last</a>
+            {% endif %}
+            </div>
         </div>
 
     </div>

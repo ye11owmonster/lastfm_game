@@ -14,14 +14,6 @@ class Hist(Base):
     artist = Column(String)
     tags = Column(String)
 
-class Metadata(Base):
-    __tablename__ = 'metadata'
-
-    id = Column(String, primary_key=True)
-    timestamp = Column(TIMESTAMP)
-    duration = Column(Integer)
-
-
 # Step 3: Specify the directory where the DB will be kept
 db_directory = 'static/databases'
 db_file = 'db_lastfm_persistent.db'
