@@ -12,7 +12,7 @@ api_key = os.environ.get("API_KEY")
 shared_secret = os.environ.get("SHARED_SECRET")
 app_name = os.environ.get("APP_NAME")
 
-LASTFM_BASE_API_URI = "{LASTFM_BASE_API_URI}"
+LASTFM_BASE_API_URI = "http://ws.audioscrobbler.com/2.0/"
 
 def get_artist_info(mbid: str, name: str = '') -> dict:
 
@@ -103,7 +103,7 @@ def get_random_artists(user_name: str, n_artists: int = 5) -> dict:
         lucky_artists += next_lucky_artists
 
     result['random_page'] = lucky_page
-    result['positions'] = f"{lucky_page * 50 + lower_bound} - {lucky_page * 50 + upper_bound}"
+    result['positions'] = f"{lucky_page * 50 + lower_bound}―{lucky_page * 50 + upper_bound}"
     result['artists'] = []
 
     for a in lucky_artists:
