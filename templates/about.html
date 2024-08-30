@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Last.fm Game</title>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&display=swap"
+        media="print" onload="this.media='all'">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Smooch&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="lastfm-big-logo-container"><img id="lastfm-big-logo"
+            src="{{ url_for('static', filename='img/lastfm_logo.svg') }}" alt="Last.fm Logo"></div>
+
+    <div class="main-content-container">
+
+        <div class="button-main-menu-container">
+            <button class="button-main-menu" onclick="window.location.href='{{ url_for('index') }}'">HOME</button>
+            <button class="button-main-menu" onclick="window.location.href='{{ url_for('about') }}'">ABOUT</button>
+            <button class="button-main-menu" onclick="window.location.href='{{ url_for('how_to_play') }}'">HOW TO PLAY</button>
+        </div>
+
+        <div class="empty-space"></div>
+        <div class="logo-container">
+            <div id="additive-word-lastfm">ABOUT</div>
+            <div id="logo-lastfm">LAST.FM.</div>
+            <div id="logo-game">game</div>
+        </div>
+
+        <p style="font-size: 20px;">
+            This game is developed by ChaoticDots for his lovely Vettoreja.
+        </p>
+        <a class="github-link" href="https://github.com/ye11owmonster/lastfm_game" target="_blank">
+            <img src="{{ url_for('static', filename='img/github-mark-white.png') }}" alt="GitHub Logo">
+            View on GitHub
+        </a>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,360 @@
+/* styles.css */
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+    isolation: isolate;
+    font-family: 'Leiko';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    background-color: rgba(239, 230, 213, 0.835294);
+    max-width: 90vw;
+}
+
+ol {
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+@font-face {
+    font-family: 'Neue Metana';
+    src: url('/static/fonts/NeueMetana-Bold.otf') format('opentype'),
+         url('/static/fonts/NeueMetana-Regular.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+.main-content-container {
+
+    position: relative;
+    width: 100%;
+    top: 20px;
+    left: 70px;
+    z-index: 10;
+}
+
+.logo-container {
+    position: relative;
+    width: 663px;
+    height: 206px;
+}
+
+#logo-lastfm {
+    position: relative;
+    top: 10%;
+
+    font-family: 'Neue Metana', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 59px;
+    line-height: 5px;
+}
+
+#additive-word-lastfm {
+    position: relative;
+    left: 5%;
+    top: 0;
+    color: #000000;
+
+    font-style: normal;
+    font-weight: 200;
+    font-size: 30px;
+    line-height: 150%;
+}
+
+#logo-game {
+    position: relative;
+    left: 35%;
+    top: 12%;
+    font-size: 59px;
+    line-height: 5px;
+    font-weight: 700;
+    color: #000000;
+
+    font-family: 'Smooch';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 59px;
+    line-height: 108%;
+}
+
+/* Style the container */
+.button-main-menu-container {
+
+    width: 598px;
+    height: 48.7px;
+
+    display: flex;
+    flex-wrap: wrap; /* Allows buttons to wrap onto multiple lines if necessary */
+    justify-content: space-between; /* Distributes space between buttons evenly */
+    align-items: center; /* Aligns buttons vertically in the center */
+    padding: 10px; /* Padding inside the container */
+    background: #9DBEB7;
+    border-radius: 50px;
+
+}
+
+/* Style the buttons */
+.button-main-menu {
+    flex: 1; /* Buttons take equal space */
+    margin: 5px; /* Space between buttons */
+    padding: 10px 20px; /* Padding inside the buttons */
+    border: none; /* Remove default border */
+    color: #000000; /* Button text color */
+    background-color: transparent;
+    cursor: pointer; /* Pointer cursor on hover */
+    text-align: center; /* Center text inside the button */
+    border-radius: 50px;
+    font-family: 'Leiko';
+    font-size: 16px;
+}
+
+/* Button hover effect */
+.button-main-menu:hover {
+    background-color: #81a39e; /* Darker background color on hover */
+}
+
+.orange-button {
+
+    position: relative;
+    width: 218px;
+    height: 48.7px;
+    left: 0px;
+    background: #E73213;
+    border-radius: 50px;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+
+}
+
+.blue-button {
+
+    position: relative;
+    width: 218px;
+    height: 48.7px;
+    background: #9DBEB7;
+    border-radius: 50px;
+    text-align: center;
+    color: black;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+}
+
+.enter-username {
+
+    position: absolute;
+    width: 800px;
+    height: 25px;
+    top: 400px;
+}
+
+.username-input {
+
+    position: relative;
+    width: 227px;
+    height: 20px;
+    left: 1%;
+
+    background: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: none;
+}
+
+.lastfm-big-logo-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 688px;
+    height: 688px;
+    overflow: hidden;
+}
+
+#lastfm-big-logo {
+
+    position: relative;
+    z-index: 0;
+    top: 150px;
+    width: 688px;
+    height: 688px;
+    filter: invert(93%) sepia(11%) saturate(794%) hue-rotate(343deg) brightness(93%) contrast(94%);
+
+}
+
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+}
+
+.github-link img {
+    width: 40px;
+    margin-right: 8px;
+    background: transparent;
+}
+
+.github-link:hover {
+    color: #0366d6;
+}
+
+.empty-space {
+    position: relative;
+    height: 150px; /* Adjust the height as needed */
+    background-color: transparent; /* Ensures no background color */
+}
+
+.c-text {
+    color: #E73213;
+    display: inline;
+}
+
+.artist-block {
+    position: relative;
+    max-width: 100%;
+    height: 70px;
+    padding-left: 2%;
+    padding-top: 5px;
+    border: none;
+    border-radius: 50px;
+    background-color: #9DBEB7;
+    opacity: 0.9;
+    list-style: none;
+    mix-blend-mode: darken;
+    
+    display: flex;
+    align-items: center;
+}
+
+.artist-block-text {
+    width: 40%;
+    line-height: 120%;
+    overflow: hidden;     /* Hide the overflow */
+    white-space: nowrap;  /* Prevent text from wrapping to the next line */
+    text-overflow: ellipsis; /* Show the ellipsis (...) when text overflows */
+}
+
+.block-list li {
+    position: relative;
+    width: 80%;
+    text-align: center;
+    border-radius: 3rem;
+    background: #9DBEB7;
+    opacity: 0.9;
+    list-style: none;
+    mix-blend-mode: darken;
+    margin-bottom: 10px;
+    counter-increment: list-counter;
+    padding: 1.1rem 1.5rem 1.1rem 1.5rem;
+}
+
+.block-list li::before {
+    content: counter(list-counter);
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-style: bold;
+    font-size: 30px;
+    color: #E73213;
+    padding: 5px 5px;
+}
+
+.mini-logos-container {
+    display: flex;
+    align-items: center; /* Vertically centers the mini-logos */
+    margin-left: 30%; /* Positions mini-logos 30% to the right of the text */
+    position: absolute;
+}
+
+.mini-logos {
+    width: 40px;
+    z-index: 15;
+    margin-inline: 10px;
+}
+
+.tags {
+    position: absolute;
+    top: 2%;
+    right: 7%;
+    color: #E73213; /* Text color */
+    padding: 5px; /* Adjust as needed for padding */
+}
+
+.generation-mgmt-button-container {
+    display: flex; /* Keeps the buttons close together */
+    gap: 10px; /* Adds space between the buttons */
+    margin-left: 80px; /* Adds additional space between the text and the buttons */
+}
+
+.generation-mgmt {
+    display: flex; /* Enables flexbox layout */
+    align-items: center; /* Vertically centers items in the container */
+    gap: 10px; /* Adds space between the items */
+}
+
+ul,ol {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.table-container {
+    margin-top: 30px;
+}
+
+table {
+    width: 80%;
+    margin: 0px;
+    border-collapse: collapse;
+    background-color: #9DBEB7;
+    opacity: 0.9;
+    border-radius: 50px;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+}
+th, td {
+    border: none;
+    padding: 8px;
+    text-align: center;
+}
+th {
+    background-color: #E73213;
+    opacity: 0.7;
+    color: white;
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+    width: 80%;
+
+}
+
+.pagination a:hover{
+    background-color: #81a39e
+}
+
+.pagination a {
+    margin: 0 5px;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: none;
+    color: black;
+    border-radius: 50px;
+}
+.pagination a.active {
+    background-color: #9DBEB7;
+    color: black;
+    border-radius: 50px; 
+}

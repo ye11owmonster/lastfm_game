@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Last.fm Game</title>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&display=swap"
+        media="print" onload="this.media='all'">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Smooch&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="lastfm-big-logo-container"><img id="lastfm-big-logo"
+            src="{{ url_for('static', filename='img/lastfm_logo.svg') }}" alt="Last.fm Logo"></div>
+
+    <div class="main-content-container">
+
+        <div class="button-main-menu-container">
+            <button class="button-main-menu" onclick="window.location.href='{{ url_for('index') }}'">HOME</button>
+            <button class="button-main-menu" onclick="window.location.href='{{ url_for('about') }}'">ABOUT</button>
+            <button class="button-main-menu" onclick="window.location.href='{{ url_for('how_to_play') }}'">HOW TO
+                PLAY</button>
+        </div>
+
+        <div class="logo-container">
+            <div id="additive-word-lastfm"><br></div>
+            <div id="logo-lastfm">LAST.FM.</div>
+            <div id="logo-game">game</div>
+        </div>
+
+        {% if random_artists %}
+        <p>
+        <div class="generation-mgmt">
+            Random artists for <span class="c-text" style="margin-left: -4px;">{{ username }}</span>
+            <div class="generation-mgmt-button-container">
+            <form method="post" action="{{ url_for('render_random_artists') }}">
+                <button class="orange-button" type="submit" name="username" value={{username}}>Get more randoms</button>
+            </form>
+            <form method="post" action="{{ url_for('clear_session') }}">
+                <button class="blue-button" type="submit" name="clear_session">Clear session</button>
+            </form>
+            <form method="post" action="{{ url_for('get_history') }}">
+                <button class="blue-button" type="submit" name="get_history">Get generation history</button>
+            </form>
+        </div>
+        </div>
+        </p>
+        <p>Random page: <span class="c-text">{{ random_artists.random_page }}</span></p>
+        <p>Positions: <span class="c-text">{{ random_artists.positions }}</span></p>
+        <ul>
+            {% for artist in random_artists.artists %}
+            <div class="artist-block">
+
+                <div class="tags">{{ artist.tags }}</div>
+                <div class="artist-block-text">
+                    Name: {{ artist.name }}<br>
+                    Playcount: {{ artist.playcount }}
+                </div>
+
+                <div class="mini-logos-container">
+
+                    <a href="{{ artist.url }}" target="_blank">
+                        <img class="mini-logos" src="{{ url_for('static', filename='img/lastfm-mini-logo.svg') }}"
+                            alt="Last.fm Logo">
+                    </a>
+
+                    <a href="{{ artist.youtube_url }}" target="_blank">
+                        <img class="mini-logos" src="{{ url_for('static', filename='img/youtube-mini-logo.svg') }}"
+                            alt="YouTube Logo">
+                    </a>
+                </div>
+
+            </div>
+            <br>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>
